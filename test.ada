@@ -4,5 +4,10 @@ begin
     while X > 0 loop
         Put_Line("Countdown");
         X := X - 1;
+        Y:=  X - 3;
+        while X > 0 loop
+            Put_Line("Countdown");
+            X := 10;
+        end loop;
     end loop;
 end Main;
