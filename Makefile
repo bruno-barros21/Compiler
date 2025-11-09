@@ -1,22 +1,24 @@
+FLEX    = flex
+BISON   = bison
+CC      = gcc
+CFLAGS  =
+TARGET  = mini_ada
 
-BISON = bison
-FLEX  = flex
-CC    = gcc
-CFLAGS = -lm
-
-TARGET = calc
-BISON_SRC = parser.y
-FLEX_SRC  = lexer.x
-SRCS = main.c
+BISON_SRC = mini_ada.y
+FLEX_SRC  = mini_ada.l
+SRCS      = ast.c
 
 all: $(TARGET)
 
 $(TARGET): $(BISON_SRC) $(FLEX_SRC) $(SRCS)
-	$(BISON) -d $(BISON_SRC)
 	$(FLEX) $(FLEX_SRC)
-	$(CC) -o $(TARGET) parser.tab.c lex.yy.c $(SRCS) $(CFLAGS)
+	$(BISON) -d $(BISON_SRC)
+	$(CC) mini_ada.tab.c lex.yy.c $(SRCS) -o $(TARGET) $(CFLAGS)
 
 clean:
-	rm -f $(TARGET) parser.tab.c parser.tab.h lex.yy.c
+	rm -f $(TARGET) mini_ada.tab.c mini_ada.tab.h lex.yy.c
 
-.PHONY: all clean
+run: $(TARGET)
+	./$(TARGET) $(ARGS)
+
+.PHONY: all clean run
