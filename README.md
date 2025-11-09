@@ -60,6 +60,53 @@ gcc mini_ada.tab.c lex.yy.c ast.c -o mini_ada
 
 ./mini_ada < test.ada
 
+For **test.ada** that looks like this:procedure Main is
+```text
+begin
+    X := 10;
+    while X > 0 loop
+        Put_Line("Countdown");
+        X := X - 1;
+        Y:=  X - 3;
+        while X > 0 loop
+            Put_Line("Countdown");
+            X := 10;
+        end loop;
+    end loop;
+end Main;
+```
+The programs prints this **AST**
+```text
+PROGRAM [Main]
+  BLOCK
+    ASSIGN [X]
+      LITERAL [10]
+    WHILE
+      BINOP [>]
+        VAR [X]
+        LITERAL [0]
+      BLOCK
+        CALL [Put_Line]
+          LITERAL ["Countdown"]
+        ASSIGN [X]
+          BINOP [-]
+            VAR [X]
+            LITERAL [1]
+        ASSIGN [Y]
+          BINOP [-]
+            VAR [X]
+            LITERAL [3]
+        WHILE
+          BINOP [>]
+            VAR [X]
+            LITERAL [0]
+          BLOCK
+            CALL [Put_Line]
+              LITERAL ["Countdown"]
+            ASSIGN [X]
+              LITERAL [10]
+```
+
 ---
 
 ## 📚 Documentation
@@ -77,3 +124,4 @@ gcc mini_ada.tab.c lex.yy.c ast.c -o mini_ada
 Made by Bruno Barros and Orlando Soares.
 
 Built as part of coursework at [Faculdade de Ciências da Universidade do Porto](https://www.up.pt/fcup/pt/).
+
