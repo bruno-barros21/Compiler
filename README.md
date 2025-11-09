@@ -4,6 +4,10 @@ This project implements a **Mini Ada compiler frontend**, capable of parsing a s
 
 The project uses **Flex** for lexical analysis and **Bison** for parsing, written in **C**.
 
+![C](https://img.shields.io/badge/C-A8B9CC.svg?style=for-the-badge&logo=C&logoColor=black)
+![Flex](https://img.shields.io/badge/Flex-59C0E8.svg?style=for-the-badge&logo=GNU&logoColor=white)
+![Bison](https://img.shields.io/badge/Bison-59C0E8.svg?style=for-the-badge&logo=GNU&logoColor=white)
+
 ---
 
 ## 🚀 Features
@@ -23,18 +27,21 @@ The project uses **Flex** for lexical analysis and **Bison** for parsing, writte
 
 ---
 
-## 🧩 Project Structure
+## 📁 Project Structure
 
+```text
 mini_ada/
-│
-├── ast.h # AST (Abstract Syntax Tree) structure and prototypes
-├── ast.c # Implementation of AST creation and printing
-│
 ├── mini_ada.l # Lexical analyzer (Flex)
+|
 ├── mini_ada.y # Parser (Bison)
 |
-└── README.md # This file
+├── ast.h # AST (Abstract Syntax Tree) structure and prototypes
+|
+└── ast.c # Implementation of AST creation and printing
+README.md
+```
 
+---
 ## ⚙️ Build Instructions
 
 ### Requirements
@@ -48,4 +55,25 @@ Run this command (in Linux):
 
 flex mini_ada.l
 bison -d mini_ada.y
+
 gcc mini_ada.tab.c lex.yy.c ast.c -o mini_ada
+
+./mini_ada < test.ada
+
+---
+
+## 📚 Documentation
+
+**ast.h** - Contains all AST node definitions and function prototypes
+
+**ast.c** - Implements AST node creation and pretty-printing functions
+
+**mini_ada.l** - Lexical rules for token recognition
+
+**mini_ada.y** - Grammar rules and AST construction
+
+---
+## 👥 Authorship
+Made by Bruno Barros and Orlando Soares.
+
+Built as part of coursework at [Faculdade de Ciências da Universidade do Porto](https://www.up.pt/fcup/pt/).
