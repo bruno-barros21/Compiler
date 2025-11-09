@@ -1,4 +1,3 @@
-# Makefile for building 'calc' from parser.y, lexer.x and main.c
 
 BISON = bison
 FLEX  = flex
